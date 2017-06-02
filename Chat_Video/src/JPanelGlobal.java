@@ -2,15 +2,18 @@ import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 
-public class JPanelVideo extends JPanel
+import specification.Application_I;
+
+public class JPanelGlobal extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelVideo()
+	public JPanelGlobal(JFrameMenu jFrameMenu)
 		{
+		this.jFrameMenu = jFrameMenu;
 		geometry();
 		control();
 		appearance();
@@ -36,6 +39,9 @@ public class JPanelVideo extends JPanel
 		{
 		// JComponent : Instanciation
 
+		jPanelChat = new JPanelChat();
+		jPanelInformationUser = new JPanelInformationUser(jFrameMenu);
+		jPanelVideo = new JPanelVideo();
 		// Layout : Specification
 			{
 			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
@@ -46,16 +52,23 @@ public class JPanelVideo extends JPanel
 			}
 
 		// JComponent : add
-
+		add(jPanelVideo);
+		add(jPanelInformationUser);
+		add(jPanelChat);
 		}
 
 	private void control()
 		{
+		//Changement couleur, contraste, résolution, miroir, (Ecriture text sur video si le temps le permet), switch taille grand/petit
 		// rien
 		}
 
 	private void appearance()
 		{
+
+		jFrameMenu.setResizable(true);
+		jFrameMenu.setSize(700, 700);
+
 		// rien
 		}
 
@@ -64,5 +77,9 @@ public class JPanelVideo extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
-
+	private JFrameMenu jFrameMenu;
+	private JPanelChat jPanelChat;
+	Application_I application;
+	private JPanelInformationUser jPanelInformationUser;
+	private JPanelVideo jPanelVideo;
 	}

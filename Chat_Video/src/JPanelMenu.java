@@ -48,7 +48,7 @@ public class JPanelMenu extends JPanel
 
 	private void geometry()
 		{
-		jFrameMenu.setSize(300,200);
+		jFrameMenu.setSize(300, 200);
 		jFrameMenu.setResizable(false);
 
 		// JComponent : Instanciation
@@ -64,7 +64,7 @@ public class JPanelMenu extends JPanel
 
 		setLayout(gridBagLayout);
 		GridBagConstraints c = new GridBagConstraints();
-		c.anchor = GridBagConstraints.WEST; //ancre a guahce des cellules les composants
+		c.anchor = GridBagConstraints.WEST; //ancre a gauche des cellules les composants
 		c.insets = new Insets(0, 0, 10, 30);
 
 		c.gridx = 0;
@@ -154,8 +154,6 @@ public class JPanelMenu extends JPanel
 		//		lblPseudo.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
 
 		//Taille des boutons
-		Dimension dButton = new Dimension(100, 20);
-
 		btnQuitter.setSize(dTextField);
 		btnQuitter.setPreferredSize(dTextField);
 		btnQuitter.setMinimumSize(dTextField);
@@ -165,7 +163,6 @@ public class JPanelMenu extends JPanel
 		btnValider.setPreferredSize(dTextField);
 		btnValider.setMinimumSize(dTextField);
 		btnValider.setMaximumSize(dTextField);
-
 
 		//POUR LES TEST !!! A SUPPRIMER PLUS TARD
 		txtfIp.setText("192.168.19.19");
@@ -177,14 +174,14 @@ public class JPanelMenu extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
-	JLabel lblAddresseIp;
-	JLabel lblPseudo;
-	JLabel lblNotreIp;
+	private JLabel lblAddresseIp;
+	private JLabel lblPseudo;
+	private JLabel lblNotreIp;
 
-	JButton btnValider;
-	JButton btnQuitter;
-	JTextField txtfIp;
-	JTextField txtfPseudo;
+	private JButton btnValider;
+	private JButton btnQuitter;
+	private JTextField txtfIp;
+	private JTextField txtfPseudo;
 
-	JFrameMenu jFrameMenu;
+	private JFrameMenu jFrameMenu;
 	}

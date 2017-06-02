@@ -1,16 +1,18 @@
 import java.awt.FlowLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class JPanelVideo extends JPanel
+public class JPanelInformationUser extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelVideo()
+	public JPanelInformationUser(JFrameMenu jFrameMenu)
 		{
+		this.jFrameMenu = jFrameMenu;
 		geometry();
 		control();
 		appearance();
@@ -35,7 +37,8 @@ public class JPanelVideo extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-
+		lblIp = new JLabel("IP : " + jFrameMenu.getIp());
+		lblPseudo = new JLabel("Pseudo : " + jFrameMenu.getPseudo());
 		// Layout : Specification
 			{
 			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
@@ -46,7 +49,8 @@ public class JPanelVideo extends JPanel
 			}
 
 		// JComponent : add
-
+		add(lblIp);
+		add(lblPseudo);
 		}
 
 	private void control()
@@ -64,5 +68,9 @@ public class JPanelVideo extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
+
+	private JLabel lblPseudo;
+	private JLabel lblIp;
+	private JFrameMenu jFrameMenu;
 
 	}

@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
 
@@ -54,9 +56,17 @@ public class JFrameMenu extends JFrame
 		{
 		this.getContentPane().setVisible(false);
 		this.getContentPane().remove(jPanMenu);
-		this.jPanVideo = new JPanelVideo(this);
-		this.getContentPane().add(this.jPanVideo, BorderLayout.CENTER);
-		this.getContentPane().setVisible(true);
+		try
+			{
+			Application.init(new ApplicationSettings(InetAddress.getLocalHost().getHostName(), "PC", this));
+			Application.getInstance().run();
+			this.getContentPane().add(this.jPanVideo, BorderLayout.CENTER);
+			this.getContentPane().setVisible(true);
+			}
+		catch (UnknownHostException e)
+			{
+			e.printStackTrace();
+			}
 		}
 
 	private void control()
@@ -99,7 +109,7 @@ public class JFrameMenu extends JFrame
 	private String Ip;
 	private String Pseudo;
 	// Tools
-	JPanelMenu jPanMenu;
-	JPanelVideo jPanVideo;
+	private JPanelMenu jPanMenu;
+	private JPanelGlobal jPanVideo;
 
 	}
