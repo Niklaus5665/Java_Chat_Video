@@ -1,4 +1,4 @@
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
 
@@ -11,8 +11,9 @@ public class JPanelGlobal extends JPanel
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelGlobal(JFrameMenu jFrameMenu)
+	public JPanelGlobal(Application_I application, JFrameMenu jFrameMenu)
 		{
+		this.application = application;
 		this.jFrameMenu = jFrameMenu;
 		geometry();
 		control();
@@ -31,6 +32,10 @@ public class JPanelGlobal extends JPanel
 		|*				Get				*|
 		\*------------------------------*/
 
+	public JPanelChat getjPanelChat()
+		{
+		return this.jPanelChat;
+		}
 	/*------------------------------------------------------------------*\
 		|*							Methodes Private						*|
 		\*------------------------------------------------------------------*/
@@ -39,27 +44,29 @@ public class JPanelGlobal extends JPanel
 		{
 		// JComponent : Instanciation
 
-		jPanelChat = new JPanelChat();
+		jPanelChat = new JPanelChat(application);
 		jPanelInformationUser = new JPanelInformationUser(jFrameMenu);
 		jPanelVideo = new JPanelVideo();
+		jPanelButtonVideo = new JPanelButtonVideo();
 		// Layout : Specification
 			{
-			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
-			setLayout(flowlayout);
+			BorderLayout borderlayout = new BorderLayout();
+			setLayout(borderlayout);
 
 			// flowlayout.setHgap(20);
 			// flowlayout.setVgap(20);
 			}
 
 		// JComponent : add
-		add(jPanelVideo);
-		add(jPanelInformationUser);
-		add(jPanelChat);
+		add(jPanelVideo,BorderLayout.WEST);
+		add(jPanelInformationUser,BorderLayout.NORTH);
+		add(jPanelChat,BorderLayout.EAST);
+		add(jPanelButtonVideo,BorderLayout.SOUTH);
 		}
 
 	private void control()
 		{
-		//Changement couleur, contraste, résolution, miroir, (Ecriture text sur video si le temps le permet), switch taille grand/petit
+		//SnapShot, Changement couleur, contraste, résolution, miroir, (Ecriture text sur video si le temps le permet), switch taille grand/petit
 		// rien
 		}
 
@@ -79,7 +86,8 @@ public class JPanelGlobal extends JPanel
 	// Tools
 	private JFrameMenu jFrameMenu;
 	private JPanelChat jPanelChat;
-	Application_I application;
+	private Application_I application;
 	private JPanelInformationUser jPanelInformationUser;
 	private JPanelVideo jPanelVideo;
+	private JPanelButtonVideo jPanelButtonVideo;
 	}

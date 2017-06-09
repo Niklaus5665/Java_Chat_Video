@@ -15,8 +15,6 @@ import javax.swing.SwingConstants;
 public class JPanelMenu extends JPanel
 	{
 
-	String recupIp;
-	String recupPseudo;
 
 	/*------------------------------------------------------------------*\
 		|*							Constructeurs							*|
@@ -50,6 +48,10 @@ public class JPanelMenu extends JPanel
 		{
 		jFrameMenu.setSize(300, 200);
 		jFrameMenu.setResizable(false);
+
+
+		txtDestinataire = new JTextField("PC");
+
 
 		// JComponent : Instanciation
 		this.btnValider = new JButton("Connection");
@@ -92,6 +94,11 @@ public class JPanelMenu extends JPanel
 		c.gridy = 3;
 		add(this.btnQuitter, c);
 
+
+		c.gridx = 1;
+		c.gridy = 4;
+		add(this.txtDestinataire, c);
+
 		}
 
 	private void control()
@@ -116,8 +123,10 @@ public class JPanelMenu extends JPanel
 				// TODO Auto-generated method stub
 				recupIp = txtfIp.getText();
 				recupPseudo = txtfPseudo.getText();
+				destinataire = txtDestinataire.getText();
 				jFrameMenu.setIp(recupIp);
 				jFrameMenu.setPseudo(recupPseudo);
+				jFrameMenu.setDestinataire(destinataire);
 				jFrameMenu.passerPanelVideo();
 				}
 			});
@@ -164,9 +173,13 @@ public class JPanelMenu extends JPanel
 		btnValider.setMinimumSize(dTextField);
 		btnValider.setMaximumSize(dTextField);
 
-		//POUR LES TEST !!! A SUPPRIMER PLUS TARD
 		txtfIp.setText("192.168.19.19");
 		txtfPseudo.setText("PseudoTest");
+
+		txtDestinataire.setSize(dTextField);
+		txtDestinataire.setPreferredSize(dTextField);
+		txtDestinataire.setMinimumSize(dTextField);
+		txtDestinataire.setMaximumSize(dTextField);
 		}
 
 	/*------------------------------------------------------------------*\
@@ -182,6 +195,16 @@ public class JPanelMenu extends JPanel
 	private JButton btnQuitter;
 	private JTextField txtfIp;
 	private JTextField txtfPseudo;
+
+
+	private String recupIp;
+	private String recupPseudo;
+
+
+	//Pour les test
+	private String destinataire;
+	private JTextField txtDestinataire;
+
 
 	private JFrameMenu jFrameMenu;
 	}

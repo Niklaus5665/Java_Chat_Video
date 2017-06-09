@@ -40,6 +40,7 @@ public class Application implements Application_I ,Runnable
 		{
 		// TODO Auto-generated method stub
 		System.out.println("text send : " + text);
+		jPanelGlobal.getjPanelChat().setTextArea(text);
 
 		}
 
@@ -73,6 +74,10 @@ public class Application implements Application_I ,Runnable
 		applicationSettings = _applicationSettings;
 		}
 
+	public JPanelGlobal getJPanelGlobal()
+		{
+		return this.jPanelGlobal;
+		}
 	/*------------------------------------------------------------------*\
 	|*							Methodes Private						*|
 	\*------------------------------------------------------------------*/
@@ -85,7 +90,7 @@ public class Application implements Application_I ,Runnable
 		{
 		try
 			{
-			RmiURL rmiURL = new RmiURL("pc2", SettingsRMI.PC_PORT);
+			RmiURL rmiURL = new RmiURL(applicationSettings.getExpediteur(), SettingsRMI.PC_PORT);
 
 			RmiTools.shareObject(this, rmiURL);
 			RmiTools.afficherAllShareObject(SettingsRMI.PC_PORT);
@@ -113,7 +118,7 @@ public class Application implements Application_I ,Runnable
 			{
 			long delayMs = 1000;
 			int nbTentativeMax = 100;
-			RmiURL rmiURL = new RmiURL("pc1", InetAddress.getByName(applicationSettings.getServername()), SettingsRMI.PC_PORT);
+			RmiURL rmiURL = new RmiURL(applicationSettings.getDestinataire(), InetAddress.getByName(applicationSettings.getServername()), SettingsRMI.PC_PORT);
 			Application_I application = (Application_I)RmiTools.connectionRemoteObjectBloquant(rmiURL, delayMs, nbTentativeMax);
 			return application;
 			}
@@ -133,7 +138,7 @@ public class Application implements Application_I ,Runnable
 
 	private void work(Application_I application)
 		{
-		this.jPanelGlobal = new JPanelGlobal(applicationSettings.getJFrameMenu());
+		this.jPanelGlobal = new JPanelGlobal(application, applicationSettings.getJFrameMenu());
 		System.out.println(applicationSettings);
 		}
 

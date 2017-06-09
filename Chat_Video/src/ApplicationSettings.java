@@ -5,11 +5,12 @@ public class ApplicationSettings
 	/*------------------------------------------------------------------*\
 	|*							Constructeurs							*|
 	\*------------------------------------------------------------------*/
-	public ApplicationSettings(String servername, String destinataire, JFrameMenu jFrameMenu)
+	public ApplicationSettings(String servername, String destinataire, JFrameMenu jFrameMenu, String expediteur)
 		{
 		this.jFrameMenu = jFrameMenu;
 		this.servername = servername;
 		this.destinataire = destinataire;
+		this.expediteur = expediteur;
 		}
 
 	/*------------------------------------------------------------------*\
@@ -39,6 +40,11 @@ public class ApplicationSettings
 		return this.servername;
 		}
 
+	public String getExpediteur()
+		{
+		return this.expediteur;
+		}
+
 	public String getDestinataire()
 		{
 		return this.destinataire;
@@ -60,4 +66,5 @@ public class ApplicationSettings
 	private String servername;
 	private String destinataire;
 	private JFrameMenu jFrameMenu;
+	private String expediteur;
 	}

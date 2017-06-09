@@ -58,10 +58,14 @@ public class JFrameMenu extends JFrame
 		this.getContentPane().remove(jPanMenu);
 		try
 			{
-			Application.init(new ApplicationSettings(InetAddress.getLocalHost().getHostName(), "PC", this));
+			Application.init(new ApplicationSettings(InetAddress.getLocalHost().getHostName(), Pseudo, this, destinataire));
+			//Application.init(new ApplicationSettings(InetAddress.getLocalHost().getHostName(), Pseudo, this, ));
+
 			Application.getInstance().run();
-			this.getContentPane().add(this.jPanVideo, BorderLayout.CENTER);
+			this.getContentPane().add(Application.getInstance().getJPanelGlobal(), BorderLayout.CENTER);
+			//			this.getContentPane().add(this.jPanVideo, BorderLayout.CENTER);
 			this.getContentPane().setVisible(true);
+			//Application.getInstance().
 			}
 		catch (UnknownHostException e)
 			{
@@ -101,6 +105,11 @@ public class JFrameMenu extends JFrame
 		{
 		return Pseudo;
 		}
+
+	public void setDestinataire(String destinataire)
+		{
+		this.destinataire = destinataire;
+		}
 	/*------------------------------------------------------------------*\
 	|*							Attributs Private						*|
 	\*------------------------------------------------------------------*/
@@ -111,5 +120,6 @@ public class JFrameMenu extends JFrame
 	// Tools
 	private JPanelMenu jPanMenu;
 	private JPanelGlobal jPanVideo;
+	private String destinataire;
 
 	}
