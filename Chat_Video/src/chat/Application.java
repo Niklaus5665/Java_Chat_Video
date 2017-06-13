@@ -1,3 +1,4 @@
+package chat;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -8,6 +9,7 @@ import javax.imageio.ImageIO;
 import com.bilat.tools.reseau.rmi.RmiTools;
 import com.bilat.tools.reseau.rmi.RmiURL;
 
+import global.JPanelGlobal;
 import specification.Application_I;
 
 public class Application implements Application_I ,Runnable

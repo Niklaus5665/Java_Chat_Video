@@ -1,18 +1,19 @@
-import java.awt.FlowLayout;
+package global;
+
+import java.awt.BorderLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class JPanelInformationUser extends JPanel
+public class JPanelInformation extends JPanel
 	{
 
 	/*------------------------------------------------------------------*\
 		|*							Constructeurs							*|
 		\*------------------------------------------------------------------*/
 
-	public JPanelInformationUser(JFrameMenu jFrameMenu)
+	public JPanelInformation()
 		{
-		this.jFrameMenu = jFrameMenu;
 		geometry();
 		control();
 		appearance();
@@ -37,20 +38,20 @@ public class JPanelInformationUser extends JPanel
 	private void geometry()
 		{
 		// JComponent : Instanciation
-		lblIp = new JLabel("IP : " + jFrameMenu.getIp());
-		lblPseudo = new JLabel("Pseudo : " + jFrameMenu.getPseudo());
+		auteur = new JLabel("Auteur : ");
+		version = new JLabel("N° de version : 1.0.0");
 		// Layout : Specification
 			{
-			FlowLayout flowlayout = new FlowLayout(FlowLayout.CENTER);
-			setLayout(flowlayout);
+			BorderLayout borderLayout = new BorderLayout();
+			setLayout(borderLayout);
 
 			// flowlayout.setHgap(20);
 			// flowlayout.setVgap(20);
 			}
 
 		// JComponent : add
-		add(lblIp);
-		add(lblPseudo);
+			add(auteur, BorderLayout.WEST);
+			add(version, BorderLayout.EAST);
 		}
 
 	private void control()
@@ -68,9 +69,7 @@ public class JPanelInformationUser extends JPanel
 		\*------------------------------------------------------------------*/
 
 	// Tools
-
-	private JLabel lblPseudo;
-	private JLabel lblIp;
-	private JFrameMenu jFrameMenu;
+	private JLabel auteur;
+	private JLabel version;
 
 	}

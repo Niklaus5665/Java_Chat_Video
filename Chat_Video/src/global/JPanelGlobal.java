@@ -1,10 +1,13 @@
+package global;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Insets;
 
 import javax.swing.JPanel;
 
+import chat.JPanelChat;
 import specification.Application_I;
+import webcam.JPanelVideo;
 
 public class JPanelGlobal extends JPanel
 	{

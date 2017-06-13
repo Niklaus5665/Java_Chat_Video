@@ -1,3 +1,4 @@
+package chat;
 
 import com.bilat.tools.reseau.rmi.RmiTools;
 

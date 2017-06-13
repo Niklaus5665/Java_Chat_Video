@@ -1,4 +1,8 @@
 
+package chat;
+
+import global.JFrameMenu;
+
 public class ApplicationSettings
 	{
 

@@ -1,3 +1,4 @@
+package webcam;
 
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;

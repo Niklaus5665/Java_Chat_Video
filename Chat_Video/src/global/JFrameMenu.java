@@ -1,9 +1,17 @@
+
+package global;
+
 import java.awt.BorderLayout;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+
+import chat.Application;
+import chat.ApplicationSettings;
+import connection.JPanelMenu;
 
 public class JFrameMenu extends JFrame
 	{
@@ -95,6 +103,8 @@ public class JFrameMenu extends JFrame
 		{
 		//setSize(300, 200);
 		//setResizable(false);
+		this.setIconImage((new ImageIcon("img/icone_application.jpg")).getImage());
+		this.setTitle("Chat en java");
 		setLocationRelativeTo(null); // frame centrer
 		setVisible(true); // last!
 		}

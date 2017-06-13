@@ -1,3 +1,6 @@
+
+package chat;
+
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -71,7 +74,7 @@ public class JPanelChat extends JPanel
 			{
 			try
 				{
-				imageTop = resize((getClass().getResource("background_chat.jpg").toURI()), widthPanelTop, heightPanelTop);
+				imageTop = resize((getClass().getResource("../background_chat.jpg").toURI()), widthPanelTop, heightPanelTop);
 				}
 			catch (URISyntaxException e)
 				{
@@ -85,13 +88,15 @@ public class JPanelChat extends JPanel
 			e.printStackTrace();
 			}
 		jPanTop = new JPanel()
-					{
-					 @Override
-					    protected void paintComponent(Graphics g) {
-					        super.paintComponent(g);
-					        g.drawImage(imageTop, 0, 0, this);
-					    }
-					};
+			{
+
+			@Override
+			protected void paintComponent(Graphics g)
+				{
+				super.paintComponent(g);
+				g.drawImage(imageTop, 0, 0, this);
+				}
+			};
 		jSaisiePanel = new JPanel();
 
 		JSplitPane splitPane = new JSplitPane()
@@ -171,21 +176,20 @@ public class JPanelChat extends JPanel
 		txtSaisieUserMessage.setMinimumSize(dTextField);
 		}
 
-	 private static BufferedImage resize(URI uri, int scaledWidth, int scaledHeight)
-	            throws IOException {
-	        // reads input image
-	        File inputFile = new File(uri);
-	        BufferedImage inputImage = ImageIO.read(inputFile);
+	private static BufferedImage resize(URI uri, int scaledWidth, int scaledHeight) throws IOException
+		{
+		// reads input image
+		File inputFile = new File(uri);
+		BufferedImage inputImage = ImageIO.read(inputFile);
 
-	        BufferedImage outputImage = new BufferedImage(scaledWidth,
-	                scaledHeight, inputImage.getType());
+		BufferedImage outputImage = new BufferedImage(scaledWidth, scaledHeight, inputImage.getType());
 
-	        Graphics2D g2d = outputImage.createGraphics();
-	        g2d.drawImage(inputImage, 0, 0, scaledWidth, scaledHeight, null);
-	        g2d.dispose();
+		Graphics2D g2d = outputImage.createGraphics();
+		g2d.drawImage(inputImage, 0, 0, scaledWidth, scaledHeight, null);
+		g2d.dispose();
 
-	        return outputImage;
-	    }
+		return outputImage;
+		}
 
 	/*------------------------------------------------------------------*\
 		|*							Attributs Private						*|

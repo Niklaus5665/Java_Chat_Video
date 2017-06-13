@@ -1,3 +1,4 @@
+package connection;
 
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -11,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import global.JFrameMenu;
 
 public class JPanelMenu extends JPanel
 	{
@@ -156,11 +159,6 @@ public class JPanelMenu extends JPanel
 		txtfPseudo.setPreferredSize(dTextField);
 		txtfPseudo.setMinimumSize(dTextField);
 		txtfPseudo.setMaximumSize(dTextField);
-
-		//Marge des label
-		//		lblAddresseIp.setBorder(BorderFactory.createEmptyBorder(20, 20, 0, 0));
-		//		lblNotreIp.setBorder(BorderFactory.createEmptyBorder(0, 20, 20, 0));
-		//		lblPseudo.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
 
 		//Taille des boutons
 		btnQuitter.setSize(dTextField);
