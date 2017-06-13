@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Insets;
 
 import javax.swing.JPanel;
 
@@ -47,23 +49,29 @@ public class JPanelGlobal extends JPanel
 		jPanelChat = new JPanelChat(application);
 		jPanelInformationUser = new JPanelInformationUser(jFrameMenu);
 		jPanelVideo = new JPanelVideo();
-		jPanelButtonVideo = new JPanelButtonVideo();
+		jPanelInformation = new JPanelInformation();
 		// Layout : Specification
 			{
 			BorderLayout borderlayout = new BorderLayout();
 			setLayout(borderlayout);
 
-			// flowlayout.setHgap(20);
-			// flowlayout.setVgap(20);
+			 borderlayout.setHgap(20);
+			 borderlayout.setVgap(10);
 			}
 
 		// JComponent : add
-		add(jPanelVideo,BorderLayout.WEST);
+		add(jPanelVideo,BorderLayout.CENTER);
 		add(jPanelInformationUser,BorderLayout.NORTH);
 		add(jPanelChat,BorderLayout.EAST);
-		add(jPanelButtonVideo,BorderLayout.SOUTH);
+		add(jPanelInformation,BorderLayout.SOUTH);
 		}
 
+	@Override
+	public Insets getInsets() {
+	   Insets normal = super.getInsets();
+	   return new Insets(normal.top, normal.left + 15,
+	   normal.bottom, normal.right + 15);
+	}
 	private void control()
 		{
 		//SnapShot, Changement couleur, contraste, résolution, miroir, (Ecriture text sur video si le temps le permet), switch taille grand/petit
@@ -74,7 +82,9 @@ public class JPanelGlobal extends JPanel
 		{
 
 		jFrameMenu.setResizable(true);
-		jFrameMenu.setSize(700, 700);
+		jFrameMenu.setSize(1100, 500);
+		Dimension sizeWindows = new Dimension(900, 500);
+		jFrameMenu.setMinimumSize(sizeWindows);
 
 		// rien
 		}
@@ -89,5 +99,5 @@ public class JPanelGlobal extends JPanel
 	private Application_I application;
 	private JPanelInformationUser jPanelInformationUser;
 	private JPanelVideo jPanelVideo;
-	private JPanelButtonVideo jPanelButtonVideo;
+	private JPanelInformation jPanelInformation;
 	}

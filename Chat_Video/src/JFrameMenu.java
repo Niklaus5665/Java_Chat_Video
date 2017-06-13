@@ -3,6 +3,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 import javax.swing.JFrame;
+import javax.swing.UIManager;
 
 public class JFrameMenu extends JFrame
 	{
@@ -13,6 +14,17 @@ public class JFrameMenu extends JFrame
 
 	public JFrameMenu()
 		{
+		try
+			{
+			// select Look and Feel
+			//UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");
+			UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");
+			// start application
+			}
+		catch (Exception ex)
+			{
+			ex.printStackTrace();
+			}
 		geometry();
 		control();
 		appearance();
@@ -76,6 +88,7 @@ public class JFrameMenu extends JFrame
 	private void control()
 		{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		}
 
 	private void appearance()

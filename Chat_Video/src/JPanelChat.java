@@ -1,9 +1,17 @@
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.rmi.RemoteException;
 
+import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -58,26 +66,32 @@ public class JPanelChat extends JPanel
 		txtAreaMessage.setEditable(false);
 		scroll = new JScrollPane(txtAreaMessage);
 		scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-
 		jPanBot = new JPanel();
-		//		jPanTop = new JPanel()
-		//			{
-		//			@Override
-		//			public void paintComponent(Graphics g)
-		//				{
-		//				try
-		//					{
-		//					g.drawImage(ImageIO.read(getClass().getResource("/img/background_chat.jpg")), 0, 0, null);
-		//					}
-		//				catch (IOException e)
-		//					{
-		//					// TODO Auto-generated catch block
-		//					e.printStackTrace();
-		//					}
-		//				super.paintComponent(g);
-		//				}
-		//			};
-		jPanTop = new JPanel();
+		try
+			{
+			try
+				{
+				imageTop = resize((getClass().getResource("background_chat.jpg").toURI()), widthPanelTop, heightPanelTop);
+				}
+			catch (URISyntaxException e)
+				{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+			}
+		catch (IOException e)
+			{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		jPanTop = new JPanel()
+					{
+					 @Override
+					    protected void paintComponent(Graphics g) {
+					        super.paintComponent(g);
+					        g.drawImage(imageTop, 0, 0, this);
+					    }
+					};
 		jSaisiePanel = new JPanel();
 
 		JSplitPane splitPane = new JSplitPane()
@@ -102,34 +116,32 @@ public class JPanelChat extends JPanel
 			};
 		setLayout(new GridLayout());
 		add(splitPane);
-		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT); // we want it to split the window verticaly
-		splitPane.setDividerLocation(0); // the initial position of the divider is 200 (our window is 400 pixels high)
-		splitPane.setBottomComponent(jPanBot); // and at the bottom we want our "bottomPanel"
-		splitPane.setTopComponent(jPanTop); // and at the bottom we want our "bottomPanel"
+		splitPane.setEnabled(false);
+		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		splitPane.setDividerLocation(0);
+		splitPane.setBottomComponent(jPanBot);
+		splitPane.setTopComponent(jPanTop);
 
-		jPanBot.setLayout(new BoxLayout(jPanBot, BoxLayout.Y_AXIS)); // BoxLayout.Y_AXIS will arrange the content vertically
+		jPanBot.setLayout(new BoxLayout(jPanBot, BoxLayout.Y_AXIS));
+		jPanBot.add(scroll);
+		scroll.setViewportView(txtAreaMessage);
+		jPanBot.add(jSaisiePanel);
 
-		jPanBot.add(scroll); // first we add the scrollPane to the bottomPanel, so it is at the top
-		scroll.setViewportView(txtAreaMessage); // the scrollPane should make the textArea scrollable, so we define the viewport
-		jPanBot.add(jSaisiePanel); // then we add the inputPanel to the bottomPanel, so it under the scrollPane / textArea
+		jSaisiePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75));
+		jSaisiePanel.setLayout(new BoxLayout(jSaisiePanel, BoxLayout.X_AXIS));
 
-		jSaisiePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 75)); // we set the max height to 75 and the max width to (almost) unlimited
-		jSaisiePanel.setLayout(new BoxLayout(jSaisiePanel, BoxLayout.X_AXIS)); // X_Axis will arrange the content horizontally
-
-		jSaisiePanel.add(txtSaisieUserMessage); // left will be the textField
-		jSaisiePanel.add(btnEnvoyerMessage); // and right the "send" button
+		jSaisiePanel.add(txtSaisieUserMessage);
+		jSaisiePanel.add(btnEnvoyerMessage);
 
 		}
 
 	public void setTextArea(String text)
 		{
 		txtAreaMessage.setText(txtAreaMessage.getText() + "\n" + text);
-
 		}
 
 	private void control()
 		{
-		// rien
 		btnEnvoyerMessage.addActionListener(new ActionListener()
 			{
 
@@ -159,17 +171,35 @@ public class JPanelChat extends JPanel
 		txtSaisieUserMessage.setMinimumSize(dTextField);
 		}
 
+	 private static BufferedImage resize(URI uri, int scaledWidth, int scaledHeight)
+	            throws IOException {
+	        // reads input image
+	        File inputFile = new File(uri);
+	        BufferedImage inputImage = ImageIO.read(inputFile);
+
+	        BufferedImage outputImage = new BufferedImage(scaledWidth,
+	                scaledHeight, inputImage.getType());
+
+	        Graphics2D g2d = outputImage.createGraphics();
+	        g2d.drawImage(inputImage, 0, 0, scaledWidth, scaledHeight, null);
+	        g2d.dispose();
+
+	        return outputImage;
+	    }
+
 	/*------------------------------------------------------------------*\
 		|*							Attributs Private						*|
 		\*------------------------------------------------------------------*/
 
 	// Tools
 	private JScrollPane scroll;
+	private int heightPanelTop = 100;
+	private int widthPanelTop = 400;
+
 	private JPanel jPanBot;
 	private JPanel jPanTop;
-
 	private JPanel jSaisiePanel;
-	private JSplitPane splitPane;
+	private BufferedImage imageTop;
 	private JTextArea txtAreaMessage;
 	private JButton btnEnvoyerMessage;
 	private JTextField txtSaisieUserMessage;

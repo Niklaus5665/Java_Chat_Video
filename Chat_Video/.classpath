@@ -4,5 +4,9 @@
 	<classpathentry kind="src" path="img"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="lib" path="C:/Users/nicolas.beyeler/Documents/2eme/Java/Chat_Video/Jar/BilatRmiTools.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nicolas.beyeler/Documents/2eme/Java/Chat_Video/Jar/JTattoo-1.6.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nicolas.beyeler/Documents/2eme/Java/Chat_Video/Jar/webcam-capture-0.3.10.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nicolas.beyeler/Documents/2eme/Java/Chat_Video/Jar/bridj-0.6.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nicolas.beyeler/Documents/2eme/Java/Chat_Video/Jar/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
